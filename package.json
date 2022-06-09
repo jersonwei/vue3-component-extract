@@ -5,13 +5,43 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint:css": "stylelint **/*.{vue,htm,html,css,sss,less,scss,sass} --fix",
+    "cm": "git-cz"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "eslint src/**/*.{js,jsx,ts,tsx}",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.vue": [
+      "eslint --fix",
+      "stylelint --fix",
+      "git add"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{htm,html,css,sss,less,scss,sass}": [
+      "stylelint --fix",
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   },
   "dependencies": {
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
+    "element-plus": "^2.2.5",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -22,7 +52,8 @@
     "stylelint-config-standard": "^26.0.0",
     "stylelint-order": "^5.0.0",
     "stylelint-scss": "^4.2.0",
-    "vue": "^3.2.25"
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.15"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.27.1",
