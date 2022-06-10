@@ -159,4 +159,7 @@ module.exports = {
     // 颜色值要小写
     'color-hex-case': 'lower', 'number-leading-zero': 'always',
   },
+  include: [
+    "src/**/*.vue"
+  ]
 };
