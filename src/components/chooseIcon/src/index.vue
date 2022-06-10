@@ -37,13 +37,42 @@ onUnmounted(() => {
   <el-dialog v-model="dialogVisible" :title="title">
     <div class="container">
       <div class="item" v-for="(item, index) in Object.keys(ElePlusIcons)" :key="index">
-        <div>
+        <div class="text">
           <component :is="`el-icon-${toLine(item)}`"></component>
         </div>
-        <div>{{ item }}</div>
+        <div class="icon">{{ item }}</div>
       </div>
     </div>
   </el-dialog>
 </template>
-<style>
+<style lang="scss" scoped>
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  .item {
+    display: flex;
+    width: 25%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    margin-bottom: 20px;
+    cursor: pointer;
+
+    .text {
+      font-size: 14px;
+    }
+
+    .icon {
+      font-size: 14px;
+    }
+  }
+}
+
+svg {
+  width: 2em;
+  height: 2em;
+}
 </style>
