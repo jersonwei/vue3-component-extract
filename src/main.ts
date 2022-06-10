@@ -7,7 +7,6 @@ import * as ElePlusIcons from '@element-plus/icons-vue'
 import { toLine } from './utils'
 const app = createApp(App)
 for (let i in ElePlusIcons) {
-  console.log(toLine(i))
   app.component(`el-icon-${toLine(i)}`, (ElePlusIcons as any)[i])
 }
 app.use(router)

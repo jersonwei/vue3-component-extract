@@ -1,8 +1,8 @@
 <script setup lang='ts'>
-const props = defineProps<{ isCollapse: boolean }>()
+const props = defineProps<{ collapse: boolean }>()
 </script>
 <template>
-  <el-menu :collapse="isCollapse" default-active="2" class="el-menu-vertical-demo">
+  <el-menu :collapse="collapse" default-active="2" class="el-menu-vertical-demo">
     <el-menu-item index="1">
       <el-icon-menu class="el-icon-menu"></el-icon-menu>
       <span>导航1</span>

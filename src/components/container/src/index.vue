@@ -8,11 +8,11 @@ let isCollapse = ref<boolean>(false)
 <template>
   <el-container>
     <el-aside width="auto">
-      <nav-side :isCollapse="isCollapse"></nav-side>
+      <nav-side v-model:collapse="isCollapse"></nav-side>
     </el-aside>
     <el-container>
       <el-header>
-        <nav-header :isCollapse="isCollapse"></nav-header>
+        <nav-header v-model:collapse="isCollapse"></nav-header>
       </el-header>
       <el-main>
         <router-view></router-view>
