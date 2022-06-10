@@ -5,15 +5,15 @@ const props = defineProps<{ collapse: boolean }>()
   <el-menu :collapse="collapse" default-active="2" class="el-menu-vertical-demo">
     <el-menu-item index="1">
       <el-icon-menu class="el-icon-menu"></el-icon-menu>
-      <span>导航1</span>
+      <span>首页</span>
     </el-menu-item>
     <el-menu-item index="2">
       <el-icon-menu class="el-icon-menu"></el-icon-menu>
-      <span>导航2</span>
+      <span>图标选择器</span>
     </el-menu-item>
     <el-menu-item index="3">
       <el-icon-menu class="el-icon-menu"></el-icon-menu>
-      <span>导航3</span>
+      <span>趋势标记</span>
     </el-menu-item>
   </el-menu>
 </template>
