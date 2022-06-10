@@ -1,8 +1,8 @@
 <script setup lang='ts'>
 import { onUnmounted, ref, watch, watchEffect } from 'vue';
 import * as ElePlusIcons from '@element-plus/icons-vue'
-import { toLine } from '../../../utils';
-
+import { toLine } from 'src/utils'
+import { useCopy } from 'src/hooks/useCopy'
 let props = defineProps<{
   // 弹出框的标题
   title: string,
@@ -25,10 +25,15 @@ const stopDialogVisible = watch(() => dialogVisible.value, val => {
 //   let visible = dialogVisible.value
 //   emits('update:visible', visible)
 // })
+const clickItem = (item: string) => {
+  let text = `<el-icon-${toLine(item)} />`
+  useCopy(text)
+}
 onUnmounted(() => {
   stopVisible()
   stopDialogVisible()
 })
+
 </script>
 <template>
   <el-button @click="handleClick" type="primary">
@@ -37,7 +42,7 @@ onUnmounted(() => {
   <div class=".m--choose-icon-dialog-body-height">
     <el-dialog v-model="dialogVisible" :title="title">
       <div class="container">
-        <div class="item" v-for="(item, index) in Object.keys(ElePlusIcons)" :key="index">
+        <div class="item" v-for="(item, index) in Object.keys(ElePlusIcons)" :key="index" @click="clickItem(item)">
           <div class="text">
             <component :is="`el-icon-${toLine(item)}`"></component>
           </div>
