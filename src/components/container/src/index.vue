@@ -21,4 +21,8 @@ let isCollapse = ref<boolean>(false)
   </el-container>
 </template>
 <style lang="scss" scoped>
+.el-header {
+  padding: 0;
+  border-bottom: 1px solid #eee;
+}
 </style>
