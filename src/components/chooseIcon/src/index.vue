@@ -13,22 +13,26 @@ let dialogVisible = ref<boolean>(props.visible)
 const handleClick = () => {
   emits('update:visible', !dialogVisible.value)
 }
-// watch(() => dialogVisible, val => {
-//   emits('update:dialogVisible', val)
+const stopVisible = watch(() => props.visible, val => {
+  dialogVisible.value = val
+})
+const stopDialogVisible = watch(() => dialogVisible.value, val => {
+  emits('update:visible', val)
+})
+// watchEffect(() => {
+//   let visible = dialogVisible.value
+//   emits('update:visible', visible)
 // })
-const stop = watchEffect(() => {
-  let visible = dialogVisible.value = props.visible
-  emits('update:visible', visible)
-}, { flush: 'sync' })
 onUnmounted(() => {
-  stop()
+  stopVisible()
+  stopDialogVisible()
 })
 </script>
 <template>
   <el-button @click="handleClick" type="primary">
     <slot></slot>
   </el-button>
-  <el-dialog v-model="visible" :title="title">
+  <el-dialog v-model="dialogVisible" :title="title">
     {{ title }}</el-dialog>
 </template>
 <style>
