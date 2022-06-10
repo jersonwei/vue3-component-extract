@@ -7,7 +7,7 @@ const toggleMenu = () => {
 </script>
 <template>
   <el-container>
-    <el-aside>
+    <el-aside width="auto">
       <el-menu :collapse="isCollapse" default-active="2" class="el-menu-vertical-demo">
         <el-menu-item index="1">
           <el-icon-menu class="el-icon-menu"></el-icon-menu>
@@ -36,5 +36,9 @@ const toggleMenu = () => {
     </el-container>
   </el-container>
 </template>
-<style>
+<style lang="scss" scoped>
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
+}
 </style>
