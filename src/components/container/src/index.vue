@@ -1,9 +1,11 @@
 <script setup lang='ts'>
+import { ref } from 'vue';
+let isCollapse = ref(true)
 </script>
 <template>
   <el-container>
     <el-aside>
-      <el-menu default-active="2" class="el-menu-vertical-demo">
+      <el-menu :collapse="isCollapse" default-active="2" class="el-menu-vertical-demo">
         <el-menu-item index="1">
           <el-icon-menu></el-icon-menu>
           <span>导航1</span>
