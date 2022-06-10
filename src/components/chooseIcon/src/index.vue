@@ -1,5 +1,7 @@
 <script setup lang='ts'>
 import { onUnmounted, ref, watch, watchEffect } from 'vue';
+import * as ElePlusIcons from '@element-plus/icons-vue'
+import { toLine } from '../../../utils';
 
 let props = defineProps<{
   // 弹出框的标题
@@ -33,7 +35,15 @@ onUnmounted(() => {
     <slot></slot>
   </el-button>
   <el-dialog v-model="dialogVisible" :title="title">
-    {{ title }}</el-dialog>
+    <div class="container">
+      <div class="item" v-for="(item, index) in Object.keys(ElePlusIcons)" :key="index">
+        <div>
+          <component :is="`el-icon-${toLine(item)}`"></component>
+        </div>
+        <div>{{ item }}</div>
+      </div>
+    </div>
+  </el-dialog>
 </template>
 <style>
 </style>
