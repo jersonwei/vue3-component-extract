@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { onUnmounted, watch, watchEffect } from 'vue';
+import { onUnmounted, ref, watch, watchEffect } from 'vue';
 
 let props = defineProps<{
   // 弹出框的标题
@@ -8,17 +8,18 @@ let props = defineProps<{
   visible: boolean
 }>()
 let emits = defineEmits(['update:visible'])
-
+// 拷贝一份visible
+let dialogVisible = ref<boolean>(props.visible)
 const handleClick = () => {
-  emits('update:visible', !props.visible)
+  emits('update:visible', !dialogVisible.value)
 }
-// watch(() => props.visible, val => {
-//   emits('update:visible', val)
+// watch(() => dialogVisible, val => {
+//   emits('update:dialogVisible', val)
 // })
 const stop = watchEffect(() => {
-  let visible = props.visible as boolean
+  let visible = dialogVisible.value = props.visible
   emits('update:visible', visible)
-})
+}, { flush: 'sync' })
 onUnmounted(() => {
   stop()
 })
