@@ -34,16 +34,18 @@ onUnmounted(() => {
   <el-button @click="handleClick" type="primary">
     <slot></slot>
   </el-button>
-  <el-dialog v-model="dialogVisible" :title="title">
-    <div class="container">
-      <div class="item" v-for="(item, index) in Object.keys(ElePlusIcons)" :key="index">
-        <div class="text">
-          <component :is="`el-icon-${toLine(item)}`"></component>
+  <div class=".m--choose-icon-dialog-body-height">
+    <el-dialog v-model="dialogVisible" :title="title">
+      <div class="container">
+        <div class="item" v-for="(item, index) in Object.keys(ElePlusIcons)" :key="index">
+          <div class="text">
+            <component :is="`el-icon-${toLine(item)}`"></component>
+          </div>
+          <div class="icon">{{ item }}</div>
         </div>
-        <div class="icon">{{ item }}</div>
       </div>
-    </div>
-  </el-dialog>
+    </el-dialog>
+  </div>
 </template>
 <style lang="scss" scoped>
 .container {
