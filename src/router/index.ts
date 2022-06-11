@@ -5,6 +5,7 @@ import Container from '../components/container/src/index.vue'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
+    alias: '/home',
     component: Container,
     children: [
       {
