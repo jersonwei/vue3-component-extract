@@ -15,7 +15,7 @@ const city = ref<string>('')
 // 下拉框区域的值
 const area = ref<string>('')
 // 拷贝一份原始值
-let areaData = ref(AreaData)
+let areaData = ref<AreaItem[]>(AreaData)
 // 对应省份下的城市的数据
 let selectCity = ref<AreaItem[]>([])
 // computed(() => {
@@ -27,7 +27,7 @@ let selectCity = ref<AreaItem[]>([])
 // })
 watch(() => province.value, val => {
   if (val) {
-    let cities = areaData.value.find(val => val.code === province.value)!.children
+    let cities = areaData.value.find(val => val.code === province.value)!.children!
     selectCity.value = cities
   }
   city.value = ''
