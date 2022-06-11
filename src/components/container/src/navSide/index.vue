@@ -33,8 +33,8 @@ const props = defineProps<{ collapse: boolean }>()
         <span>省市区街级联选择器</span>
       </el-menu-item>
     </router-link>
-    <router-link to="/home">
-      <el-menu-item index="1">
+    <router-link to="/trend">
+      <el-menu-item index="6">
         <el-icon-menu class="el-icon-menu"></el-icon-menu>
         <span>趋势标记</span>
       </el-menu-item>
