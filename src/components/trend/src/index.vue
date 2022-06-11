@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { useSlots } from 'vue'
+import { computed, useSlots } from 'vue'
 let props = defineProps({
   // 标记当前趋势是上升还是下降
   type: {
@@ -21,17 +21,32 @@ let props = defineProps({
     type: String,
     default: '#52c41a'
   },
+  // 上升趋势文字颜色
+  upTextColor: {
+    type: String,
+    default: '#f5222d'
+  },
+  // 下降趋势文字颜色
+  downTextColor: {
+    type: String,
+    default: '#52c41a'
+  },
   // 颜色翻转 只在默认颜色下生效
   reverseColor: {
     type: Boolean,
     default: false
   }
 })
+// 获取插槽内容
 let slots = useSlots()
 console.log(slots)
+// 文字颜色
+let textColor = computed(() => {
+  return props.type === 'up' ? props.upTextColor : props.downTextColor
+})
 </script>
 <template>
-  <div class="trend">
+  <div class="trend" :style="{ color: textColor }">
     <slot v-if="slots.default"></slot>
     <div v-else class="text">
       {{ text }}
