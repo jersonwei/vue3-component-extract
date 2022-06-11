@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+import { useSlots } from 'vue'
 let porps = defineProps({
   // 标记当前趋势是上升还是下降
   type: {
@@ -19,12 +20,20 @@ let porps = defineProps({
   downIconColor: {
     type: String,
     default: '#52c41a'
+  },
+  // 颜色翻转 只在默认颜色下生效
+  reverseColor: {
+    type: Boolean,
+    default: false
   }
 })
+let slots = useSlots()
+console.log(slots)
 </script>
 <template>
   <div class="trend">
-    <div class="text">
+    <slot v-if="slots.default"></slot>
+    <div v-else class="text">
       {{ text }}
     </div>
     <div class="icon">
@@ -39,7 +48,7 @@ let porps = defineProps({
   align-items: center;
 
   .text {
-    font-size: 12px;
+    font-size: 14px;
     margin-right: 4px;
   }
 
