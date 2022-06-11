@@ -47,13 +47,13 @@ console.log(AreaData)
 </script>
 <template>
   <div>
-    <el-select placeholder="请选择省份" v-model="province">
+    <el-select clearable placeholder="请选择省份" v-model="province">
       <el-option v-for="item in areaData" :key="item.code" :value="item.code" :label="item.name"></el-option>
     </el-select>
-    <el-select :disabled="!province" placeholder="请选择城市" v-model="city">
+    <el-select clearable :disabled="!province" placeholder="请选择城市" v-model="city">
       <el-option v-for="item in selectCity" :key="item.code" :value="item.code" :label="item.name"></el-option>
     </el-select>
-    <el-select :disabled="!province || !city" placeholder="请选择区域" v-model="area">
+    <el-select clearable :disabled="!province || !city" placeholder="请选择区域" v-model="area">
       <el-option v-for="item in selectArea" :key="item.code" :value="item.code" :label="item.name"></el-option>
     </el-select>
   </div>
