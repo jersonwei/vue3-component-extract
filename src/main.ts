@@ -4,6 +4,7 @@ import router from './router/index'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import * as ElePlusIcons from '@element-plus/icons-vue'
+import comUI from './components/index'
 import { toLine } from './utils'
 const app = createApp(App)
 for (let i in ElePlusIcons) {
@@ -11,4 +12,5 @@ for (let i in ElePlusIcons) {
 }
 app.use(router)
   .use(ElementPlus)
+  .use(comUI)
 app.mount('#app')

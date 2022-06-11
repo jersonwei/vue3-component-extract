@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { computed, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 // 所有的省市区数据
 import AreaData from '../lib/pca-code.json'
 // 数据类型定义
