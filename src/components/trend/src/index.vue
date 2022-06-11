@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import { useSlots } from 'vue'
-let porps = defineProps({
+let props = defineProps({
   // 标记当前趋势是上升还是下降
   type: {
     type: String,
@@ -37,8 +37,9 @@ console.log(slots)
       {{ text }}
     </div>
     <div class="icon">
-      <el-icon-arrowup :style="{ color: upIconColor }" v-if="type === 'up'"></el-icon-arrowup>
-      <el-icon-arrowdown :style="{ color: downIconColor }" v-else></el-icon-arrowdown>
+      <el-icon-arrowup :style="{ color: !reverseColor ? upIconColor : '#52c41a' }" v-if="type === 'up'">
+      </el-icon-arrowup>
+      <el-icon-arrowdown :style="{ color: !reverseColor ? downIconColor : '#f5222d' }" v-else></el-icon-arrowdown>
     </div>
   </div>
 </template>

@@ -2,7 +2,7 @@
 
 </script>
 <template>
-  <div class="trendBox">
+  <!-- <div class="trendBox">
     <div>
       <trend text="营业额"></trend>
     </div>
@@ -17,8 +17,9 @@
     <div>
       <trend text="销售额" type="down" downIconColor="#123456"></trend>
     </div>
-  </div>
-  <trend text="全年总创收"></trend>
+  </div> -->
+  <trend text="全年总创收" reverseColor></trend>
+  <trend text="全年收益率" type="down" reverseColor></trend>
 </template>
 <style lang="scss" scoped>
 .trendBox {
