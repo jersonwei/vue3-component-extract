@@ -28,6 +28,8 @@ const stopDialogVisible = watch(() => dialogVisible.value, val => {
 const clickItem = (item: string) => {
   let text = `<el-icon-${toLine(item)} />`
   useCopy(text)
+  // 关闭弹出框
+  dialogVisible.value = false
 }
 onUnmounted(() => {
   stopVisible()
