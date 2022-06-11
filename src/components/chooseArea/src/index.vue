@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 // 所有的省市区数据
 import AreaData from '../lib/pca-code.json'
 // 下拉框省的值
@@ -11,20 +11,37 @@ const area = ref<string>('')
 // 拷贝一份原始值
 let areaData = ref(AreaData)
 // 对应省份下的城市的数据
-let selectCity = computed(() => {
-  if (!province.value) return []
-  else {
+let selectCity = ref<any[]>([])
+// computed(() => {
+//   if (!province.value) return []
+//   else {
+//     let cities = areaData.value.find(val => val.code === province.value)!.children
+//     return cities
+//   }
+// })
+watch(() => province.value, val => {
+  if (val) {
     let cities = areaData.value.find(val => val.code === province.value)!.children
-    return cities
+    selectCity.value = cities
   }
+  city.value = ''
+  area.value = ''
 })
 // 对应城市下的区域的值
-let selectArea = computed(() => {
-  if (!city.value) return []
-  else {
+let selectArea = ref<any[]>([])
+// computed(() => {
+//   if (!city.value) return []
+//   else {
+//     let areas = selectCity.value.find(val => val.code === city.value)!.children
+//     return areas
+//   }
+// })
+watch(() => city.value, val => {
+  if (val) {
     let areas = selectCity.value.find(val => val.code === city.value)!.children
-    return areas
+    selectArea.value = areas
   }
+  area.value = ''
 })
 console.log(AreaData)
 </script>
