@@ -2,6 +2,12 @@
 import { computed, ref, watch } from 'vue';
 // 所有的省市区数据
 import AreaData from '../lib/pca-code.json'
+// 数据类型定义
+export interface AreaItem {
+  name: string
+  code: string
+  children?: AreaItem[]
+}
 // 下拉框省的值
 const province = ref<string>('')
 // 下拉框市的值
@@ -11,7 +17,7 @@ const area = ref<string>('')
 // 拷贝一份原始值
 let areaData = ref(AreaData)
 // 对应省份下的城市的数据
-let selectCity = ref<any[]>([])
+let selectCity = ref<AreaItem[]>([])
 // computed(() => {
 //   if (!province.value) return []
 //   else {
@@ -28,7 +34,7 @@ watch(() => province.value, val => {
   area.value = ''
 })
 // 对应城市下的区域的值
-let selectArea = ref<any[]>([])
+let selectArea = ref<AreaItem[]>([])
 // computed(() => {
 //   if (!city.value) return []
 //   else {
@@ -38,7 +44,7 @@ let selectArea = ref<any[]>([])
 // })
 watch(() => city.value, val => {
   if (val) {
-    let areas = selectCity.value.find(val => val.code === city.value)!.children
+    let areas = selectCity.value.find(val => val.code === city.value)!.children!
     selectArea.value = areas
   }
   area.value = ''
