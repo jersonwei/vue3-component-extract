@@ -1,10 +1,21 @@
 <script setup lang='ts'>
 import { computed, useSlots } from 'vue'
+import { toLine } from '../../../utils';
 let props = defineProps({
   // 标记当前趋势是上升还是下降
   type: {
     type: String,
     default: 'up'
+  },
+  // 上升趋势的图标
+  upIcon: {
+    type: String,
+    defalut: 'ArrowUp'
+  },
+  // 下降趋势的图标
+  downIcon: {
+    type: String,
+    default: 'ArrowDown'
   },
   // 趋势显示的文字 1.父组件传递 2. 插槽
   text: {
@@ -24,12 +35,12 @@ let props = defineProps({
   // 上升趋势文字颜色
   upTextColor: {
     type: String,
-    default: '#f5222d'
+    default: 'rgb(0,0,0)'
   },
   // 下降趋势文字颜色
   downTextColor: {
     type: String,
-    default: '#52c41a'
+    default: 'rgb(0,0,0)'
   },
   // 颜色翻转 只在默认颜色下生效
   reverseColor: {
@@ -46,15 +57,21 @@ let textColor = computed(() => {
 })
 </script>
 <template>
-  <div class="trend" :style="{ color: textColor }">
-    <slot v-if="slots.default"></slot>
-    <div v-else class="text">
-      {{ text }}
+  <div class="trend">
+    <div class="text" :style="{ color: textColor }">
+      <slot v-if="slots.default"></slot>
+      <div v-else>
+        {{ text }}
+      </div>
     </div>
     <div class="icon">
-      <el-icon-arrowup :style="{ color: !reverseColor ? upIconColor : '#52c41a' }" v-if="type === 'up'">
+      <!-- <el-icon-arrowup :style="{ color: !reverseColor ? upIconColor : '#52c41a' }" v-if="type === 'up'">
       </el-icon-arrowup>
-      <el-icon-arrowdown :style="{ color: !reverseColor ? downIconColor : '#f5222d' }" v-else></el-icon-arrowdown>
+      <el-icon-arrowdown :style="{ color: !reverseColor ? downIconColor : '#f5222d' }" v-else></el-icon-arrowdown> -->
+      <component v-if="type === 'up'" :is="`el-icon-${toLine(upIcon)}`"
+        :style="{ color: !reverseColor ? upIconColor : '#52c41a' }"></component>
+      <component v-else :is="`el-icon-${toLine(downIcon)}`"
+        :style="{ color: !reverseColor ? downIconColor : '#f5222d' }"></component>
     </div>
   </div>
 </template>
