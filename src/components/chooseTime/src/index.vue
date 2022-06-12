@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 let props = defineProps({
   // 开始时间的占位符
   startPlaceholder: {
@@ -46,6 +46,27 @@ let props = defineProps({
 let startTime = ref<string>('')
 // 结束时间
 let endTime = ref<string>('')
+// 结束时间选择状态
+let endTimeDisabled = ref<boolean>(true)
+// 分发事件
+let emits = defineEmits(['startChange', 'endChange'])
+// 监听开始事件
+watch(() => startTime.value, val => {
+  if (val === '') endTime.value = ''
+  else {
+    endTimeDisabled.value = false
+    emits('startChange', val)
+  }
+})
+// 监听结束时间
+watch(() => endTime.value, val => {
+  if (val !== '') {
+    emits('endChange', {
+      startTime: startTime.value,
+      endTime: val
+    })
+  }
+})
 </script>
 <template>
   <div style="display:flex">
@@ -56,7 +77,7 @@ let endTime = ref<string>('')
     <div>
 
       <el-time-select v-model="endTime" :min-time="startTime" :placeholder="endPlaceholder" :start="endTimeStart"
-        :step="endStep" :end="endTimeEnd" />
+        :step="endStep" :end="endTimeEnd" :disabled='endTimeDisabled' />
     </div>
   </div>
 </template>
