@@ -5,6 +5,7 @@ import chooseStreet from './chooseStreet'
 import cascaderStreet from './cascaderStreet'
 import trend from './trend'
 import notification from './notification'
+import list from './list'
 // 让组件可以通过use的方法使用
 const components = [
   chooseArea,
@@ -12,7 +13,8 @@ const components = [
   chooseStreet,
   cascaderStreet,
   trend,
-  notification
+  notification,
+  list
 ]
 export default {
   install(app: App) {
