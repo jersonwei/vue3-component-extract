@@ -44,8 +44,8 @@ console.log(props.defaultActive)
 </script>
 <template>
   <el-menu class=".el-menu-vertical-demo" :default-active="defaultActive" :rooter="rooter" v-bind="$attrs">
-    <template v-for="(item, idx) in data">
-      <el-menu-item v-if="!item[children] || !item[children].length" :index="item[index]" :key="idx">
+    <template v-for="(item, idx) in data" :key="item[index]">
+      <el-menu-item v-if="!item[children] || !item[children].length" :index="item[index]">
         <component :is="`el-icon-${toLine(item[icon])}`"></component>
         <span>{{ item[name] }}</span>
       </el-menu-item>

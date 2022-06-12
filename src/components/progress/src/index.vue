@@ -18,6 +18,7 @@ let props = defineProps({
     default: 2000
   }
 })
+let emits = defineEmits(['finishLoad'])
 let p = ref(0)
 onMounted(() => {
   if (props.isAnimation) {
@@ -28,6 +29,7 @@ onMounted(() => {
       if (p.value >= props.percentage) {
         p.value = props.percentage
         clearInterval(timer)
+        emits('finishLoad', '完成加载')
       }
     }, t)
   } else {
