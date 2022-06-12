@@ -44,6 +44,11 @@ const clickItem = (item: CityItem) => {
   visible.value = false
   emits('cityChange', item)
 }
+// 点击字母
+const clickChat = (item: string) => {
+  let el = document.getElementById(item)
+  if (el) el.scrollIntoView()
+}
 </script>
 <template>
   <el-popover v-model:visible="visible" placement="bottom-start" :width="430" trigger="click">
@@ -71,11 +76,13 @@ const clickItem = (item: CityItem) => {
       </el-row>
       <div class="city">
         <!-- <div v-for="(value, key) in citys.cities"></div> -->
-        <div class="city-item" v-for="(item, index) in Object.keys(citys.cities)" :key="index">{{ item }}</div>
+        <!-- 字母区域 -->
+        <div class="city-item" @click="clickChat(item)" v-for="(item, index) in Object.keys(citys.cities)" :key="index">
+          {{ item }}</div>
       </div>
       <el-scrollbar max-height="300px">
         <template v-for="(value, key) in citys.cities" ::key="key">
-          <el-row style="marginBottom:10px">
+          <el-row style="marginBottom:10px" :id="key">
             <el-col :span='2'>
               {{ key }}
             </el-col>
