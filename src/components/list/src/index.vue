@@ -15,13 +15,21 @@ let props = defineProps({
   }
 })
 console.log(props.list)
+let emits = defineEmits(['clickItem', 'clickActions'])
+const clickItem = (options: any, index: number) => {
+  emits('clickItem', { options, index })
+}
+const clickActions = (item: ActionOptions, index: number) => {
+  emits('clickActions', { item, index })
+}
 </script>
 <template>
   <div class="list-tabs__item">
     <el-tabs>
       <el-tab-pane v-for="(item, index) in list" :key="index" :label="item.title">
         <el-scrollbar max-height="300px">
-          <div v-for="(options, index) in item.content" :key="index" class="container">
+          <div v-for="(options, index) in item.content" :key="index" class="container"
+            @click="clickItem(options, index)">
             <div class="avatar">
               <el-avatar v-if="options.avatar" :size="50" :src="options.avatar" />
             </div>
@@ -30,7 +38,7 @@ console.log(props.list)
                 <div>
                   {{ options.title }}
                 </div>
-                <el-tag v-if="options.tag" size="mini" :type="options.tagType">{{ options.tag }}</el-tag>
+                <el-tag v-if="options.tag" size="small" :type="options.tagType">{{ options.tag }}</el-tag>
               </div>
               <div class="time" v-if="options.desc">{{ options.desc }}</div>
               <div class="time" v-if="options.time">{{ options.time }}</div>
@@ -38,7 +46,7 @@ console.log(props.list)
           </div>
           <div class="actions">
             <div v-for="(action, index) in actions" :key="index" class="a-item"
-              :class="{ 'border': index !== actions.length }">
+              :class="{ 'border': index !== actions.length }" @click="clickActions(action, index)">
               <div class="a-icon" v-if="action.icon">
                 <component :is="`el-icon-${toLine(action.icon)}`"></component>
               </div>

@@ -1,11 +1,17 @@
 <script setup lang='ts'>
 import { lists, actions } from './data.d'
+const clickItem = (val: any) => {
+  console.log(val)
+}
+const clickAction = (val: any) => {
+  console.log(val)
+}
 </script>
 <template>
   <div class="notBox">
     <notification :value="50">
       <template #default>
-        <list :list="lists" :actions="actions"></list>
+        <list :list="lists" :actions="actions" @clickItem="clickItem" @clickActions="clickAction"></list>
       </template>
     </notification>
     <!-- <notification :value="60" :max="30"></notification>
