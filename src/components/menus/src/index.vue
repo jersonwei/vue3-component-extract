@@ -62,7 +62,7 @@ console.log(props.defaultActive)
     </template>
   </el-menu>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 400px;
@@ -70,5 +70,7 @@ console.log(props.defaultActive)
 
 svg {
   margin-right: 5px;
+  width: 1em;
+  height: 1em;
 }
 </style>

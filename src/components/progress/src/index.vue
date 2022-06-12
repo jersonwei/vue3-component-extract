@@ -38,8 +38,12 @@ onMounted(() => {
 </script>
 <template>
   <div>
-    <el-progress :percentage="p"></el-progress>
+    <el-progress v-bind="$attrs" :percentage="p"></el-progress>
   </div>
 </template>
 <style lang='scss' scoped>
+svg {
+  width: 126px;
+  height: 126px;
+}
 </style>
