@@ -20,8 +20,8 @@ const endOptions = {
 </script>
 <template>
   <div>
-    <w-choose-date :startOptions="startOptions" :endOptions="endOptions" @startDateChange="startDateChange"
-      @endDateChange="endDateChange"></w-choose-date>
+    <w-choose-date :Datedisabled="false" :startOptions="startOptions" :endOptions="endOptions"
+      @startDateChange="startDateChange" @endDateChange="endDateChange"></w-choose-date>
   </div>
 </template>
 <style lang='scss' scoped>

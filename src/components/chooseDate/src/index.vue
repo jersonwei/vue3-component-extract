@@ -36,7 +36,7 @@ let emits = defineEmits(['startDateChange', 'endDateChange'])
 // 监听开始日期判断结束日期状态
 watch(() => startDate.value, val => {
   endDateDisabled.value = !val
-  val && emits('startDateChange', startDate.value)
+  val ? emits('startDateChange', startDate.value) : endDate.value = null
 })
 // 监听结束日期
 watch(() => endDate.value, val => {
