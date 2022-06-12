@@ -46,6 +46,11 @@ let props = defineProps({
   reverseColor: {
     type: Boolean,
     default: false
+  },
+  // 字体大小
+  fontSizes: {
+    type: String,
+    default: '14px'
   }
 })
 // 获取插槽内容
@@ -60,7 +65,7 @@ let textColor = computed(() => {
   <div class="trend">
     <div class="text" :style="{ color: textColor }">
       <slot v-if="slots.default"></slot>
-      <div v-else>
+      <div v-else :style="{ fontSize: fontSizes }">
         {{ text }}
       </div>
     </div>
