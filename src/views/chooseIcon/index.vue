@@ -5,9 +5,9 @@ let visible = ref<boolean>(false)
 </script>
 <template>
   <div>
-    <choose-icon title="选择图标" v-model:visible="visible">
+    <w-choose-icon title="选择图标" v-model:visible="visible">
       选择图标
-    </choose-icon>
+    </w-choose-icon>
   </div>
 </template>
 <style>

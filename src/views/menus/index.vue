@@ -88,9 +88,9 @@ let data2 = [
 </script>
 <template>
   <div style="width: 200px;">
-    <!-- <menus :data="data1" defaultActive="2" active-text-color="red" name="a" index="b" icon="c" d="d"></menus> -->
-    <infinite-menus :data="data2" defaultActive='2-3-1' active-text-color="red" name="a" index="b" icon="c"
-      children="d"></infinite-menus>
+    <!-- <w-menus :data="data1" defaultActive="2" active-text-color="red" name="a" index="b" icon="c" d="d"></w-menus> -->
+    <w-infinite-menus :data="data2" defaultActive='2-3-1' active-text-color="red" name="a" index="b" icon="c"
+      children="d"></w-infinite-menus>
   </div>
 </template>
 <style lang='scss' scoped>

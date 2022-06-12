@@ -15,7 +15,7 @@ let changeStreet = (val: StreeData) => {
 }
 </script>
 <template>
-  <choose-street @change="changeStreet"></choose-street>
+  <w-choose-street @change="changeStreet"></w-choose-street>
 </template>
 <style>
 </style>

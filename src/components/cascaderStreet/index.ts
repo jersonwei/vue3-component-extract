@@ -3,6 +3,6 @@ import cascaderStreet from './src/index.vue'
 
 export default {
   install(app: App) {
-    app.component('cascader-street', cascaderStreet)
+    app.component('w-cascader-street', cascaderStreet)
   }
 }

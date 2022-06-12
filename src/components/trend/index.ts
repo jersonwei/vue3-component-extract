@@ -3,6 +3,6 @@ import trend from './src/index.vue'
 
 export default {
   install(app: App) {
-    app.component('trend', trend)
+    app.component('w-trend', trend)
   }
 }

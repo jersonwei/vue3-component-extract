@@ -9,16 +9,16 @@ const clickAction = (val: any) => {
 </script>
 <template>
   <div class="notBox">
-    <notification :value="50">
+    <w-notification :value="50">
       <template #default>
         <list :list="lists" :actions="actions" @clickItem="clickItem" @clickActions="clickAction"></list>
       </template>
-    </notification>
-    <notification :value="100" :max="99" :icon="'ChatRound'">
+    </w-notification>
+    <w-notification :value="100" :max="99" :icon="'ChatRound'">
       <template #default>
         <list :list="lists" :actions="actions" @clickItem="clickItem" @clickActions="clickAction"></list>
       </template>
-    </notification>
+    </w-notification>
     <!-- <notification :value="60" :max="30"></notification>
     <notification :value="100" :max="99" isDot></notification>
     <notification :value="100" :max="99" :icon="'ChatDotRound'"></notification> -->

@@ -4,7 +4,7 @@ import infiniteMenus from './src/menus'
 console.log(infiniteMenus, Menus)
 export default {
   install(app: App) {
-    app.component('menus', Menus)
-    app.component('infinite-menus', infiniteMenus)
+    app.component('w-menus', Menus)
+    app.component('w-infinite-menus', infiniteMenus)
   }
 }

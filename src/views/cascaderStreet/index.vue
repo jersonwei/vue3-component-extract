@@ -16,7 +16,7 @@ const changeData = (val: StreetData) => {
 </script>
 <template>
   <div>
-    <cascader-street @change="changeData"></cascader-street>
+    <w-cascader-street @change="changeData"></w-cascader-street>
   </div>
 </template>
 <style>

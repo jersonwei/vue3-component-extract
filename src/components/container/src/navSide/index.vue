@@ -113,7 +113,7 @@ let data = [
     </router-link>
   </el-menu> -->
   <el-scrollbar max-height="800px">
-    <menus :collapse="collapse" :data="data" router :defaultActive="$route.path"></menus>
+    <w-menus :collapse="collapse" :data="data" router :defaultActive="$route.path"></w-menus>
   </el-scrollbar>
 </template>
 <style lang="scss" scoped>

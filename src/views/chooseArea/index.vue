@@ -14,7 +14,7 @@ let changeArea = (val: AreaSubItem) => {
 }
 </script>
 <template>
-  <choose-area @change="changeArea"></choose-area>
+  <w-choose-area @change="changeArea"></w-choose-area>
 </template>
 <style>
 </style>
