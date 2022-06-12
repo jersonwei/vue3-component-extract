@@ -3,10 +3,14 @@
 </script>
 <template>
   <div class="notBox">
-    <notification :value="50"></notification>
-    <notification :value="60" :max="30"></notification>
+    <notification :value="50">
+      <template #default>
+        这是自定义的内容
+      </template>
+    </notification>
+    <!-- <notification :value="60" :max="30"></notification>
     <notification :value="100" :max="99" isDot></notification>
-    <notification :value="100" :max="99" :icon="'ChatDotRound'"></notification>
+    <notification :value="100" :max="99" :icon="'ChatDotRound'"></notification> -->
   </div>
 </template>
 <style lang='scss' scoped>

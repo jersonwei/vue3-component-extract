@@ -24,8 +24,10 @@ let props = defineProps({
 })
 </script>
 <template>
-  <el-popover placement="bottom" title="Title" :width="200" trigger="click"
-    content="this is content, this is content, this is content">
+  <el-popover placement="bottom" :width="300" trigger="click">
+    <template #default>
+      <slot></slot>
+    </template>
     <template #reference>
       <el-badge style="cursor:pointer" :value="value" :max="max" :isDot="isDot">
         <component :is="`el-icon-${toLine(icon)}`"></component>
