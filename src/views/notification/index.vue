@@ -14,6 +14,11 @@ const clickAction = (val: any) => {
         <list :list="lists" :actions="actions" @clickItem="clickItem" @clickActions="clickAction"></list>
       </template>
     </notification>
+    <notification :value="100" :max="99" :icon="'ChatRound'">
+      <template #default>
+        <list :list="lists" :actions="actions" @clickItem="clickItem" @clickActions="clickAction"></list>
+      </template>
+    </notification>
     <!-- <notification :value="60" :max="30"></notification>
     <notification :value="100" :max="99" isDot></notification>
     <notification :value="100" :max="99" :icon="'ChatDotRound'"></notification> -->

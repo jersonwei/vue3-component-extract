@@ -104,6 +104,7 @@ const clickActions = (item: ActionOptions, index: number) => {
     height: 50px;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 
     &:hover {
       background: rgba(14, 194, 230, 0.2);
