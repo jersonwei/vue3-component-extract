@@ -72,12 +72,12 @@ watch(() => endTime.value, val => {
   <div style="display:flex">
     <div style="marginRight:20px">
       <el-time-select v-model="startTime" class="mr-4" :placeholder="startPlaceholder" :start="startTimeStart"
-        :step="startStep" :end="startTimeEnd" />
+        :step="startStep" :end="startTimeEnd" v-bind="$attrs.startOptions" />
     </div>
     <div>
 
       <el-time-select v-model="endTime" :min-time="startTime" :placeholder="endPlaceholder" :start="endTimeStart"
-        :step="endStep" :end="endTimeEnd" :disabled='endTimeDisabled' />
+        :step="endStep" :end="endTimeEnd" :disabled='endTimeDisabled' v-bind="$attrs.endOptions" />
     </div>
   </div>
 </template>

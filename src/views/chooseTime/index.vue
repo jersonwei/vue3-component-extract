@@ -9,10 +9,14 @@ const startChange = (val: string) => {
 const endChange = ({ startTime, endTime }: TimeType) => {
   console.log(startTime, endTime)
 }
+const startOptions = {
+  size: 'small',
+  clearable: false
+}
 </script>
 <template>
   <div>
-    <w-choose-time @startChange="startChange" @endChange="endChange"></w-choose-time>
+    <w-choose-time @startChange="startChange" @endChange="endChange" :startOptions="startOptions"></w-choose-time>
   </div>
 </template>
 <style lang='scss' scoped>
