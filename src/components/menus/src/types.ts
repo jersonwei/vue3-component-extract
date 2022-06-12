@@ -2,6 +2,8 @@
 export interface MenuItem {
   // 图标
   icon?: string
+  // 处理之后的图标
+  i?: any
   // 文字
   name: string
   // 标识

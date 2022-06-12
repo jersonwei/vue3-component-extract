@@ -9,6 +9,8 @@
   "eslint.validate": [
     "typescript",
     "javascript",
-    "vue"
+    "vue",
+    "tsx",
+    "jsx"
   ]
 }

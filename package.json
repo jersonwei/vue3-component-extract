@@ -2,6 +2,11 @@
   "name": "component-ui",
   "private": true,
   "version": "0.0.0",
+  "babel": {
+    "plugins": [
+      "@vue/babel-plugin-jsx"
+    ]
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
@@ -61,6 +66,7 @@
     "@typescript-eslint/parser": "^5.27.1",
     "@vitejs/plugin-vue": "^2.3.3",
     "@vitejs/plugin-vue-jsx": "^1.3.10",
+    "@vue/babel-plugin-jsx": "^1.1.1",
     "eslint-plugin-vue": "^9.1.0",
     "sass": "^1.52.3",
     "sass-loader": "^13.0.0",
