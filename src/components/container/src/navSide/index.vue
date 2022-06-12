@@ -45,6 +45,12 @@ const props = defineProps<{ collapse: boolean }>()
         <span>提示组件</span>
       </el-menu-item>
     </router-link>
+    <router-link to="/menus">
+      <el-menu-item index="8">
+        <el-icon-menu class="el-icon-menu"></el-icon-menu>
+        <span>菜单组件</span>
+      </el-menu-item>
+    </router-link>
   </el-menu>
 </template>
 <style lang="scss" scoped>

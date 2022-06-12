@@ -38,7 +38,8 @@ const clickActions = (item: ActionOptions, index: number) => {
                 <div>
                   {{ options.title }}
                 </div>
-                <el-tag v-if="options.tag" size="small" :type="options.tagType">{{ options.tag }}</el-tag>
+                <el-tag v-if="options.tag" size="small" :type="options.tagType">
+                  {{ options.tag }}</el-tag>
               </div>
               <div class="time" v-if="options.desc">{{ options.desc }}</div>
               <div class="time" v-if="options.time">{{ options.time }}</div>
