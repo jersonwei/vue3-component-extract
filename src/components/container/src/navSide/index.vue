@@ -39,6 +39,10 @@ let data = [
     name: '时间选择',
     index: '/chooseTime'
   }, {
+    icon: 'SunRise',
+    name: '日期选择',
+    index: '/chooseDate'
+  }, {
     icon: 'TurnOff',
     name: '城市选择',
     index: '/chooseCity'
@@ -48,7 +52,7 @@ let data = [
     index: '/progress'
   }, {
     icon: 'ScaleToOriginal',
-    name: '日历',
+    name: '日历组件',
     index: '/calender'
   }, {
     icon: 'Setting',

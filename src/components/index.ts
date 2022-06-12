@@ -9,6 +9,7 @@ import list from './list'
 import menus from './menus'
 import progress from './progress'
 import chooseTime from './chooseTime'
+import chooseDate from './chooseDate'
 // 让组件可以通过use的方法使用
 const components = [
   chooseArea,
@@ -20,7 +21,8 @@ const components = [
   list,
   menus,
   progress,
-  chooseTime
+  chooseTime,
+  chooseDate
 ]
 export default {
   install(app: App) {
