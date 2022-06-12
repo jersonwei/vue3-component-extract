@@ -1,8 +1,8 @@
 <script setup lang='ts'>
 import { onUnmounted, ref, watch, watchEffect } from 'vue';
 import * as ElePlusIcons from '@element-plus/icons-vue'
-import { toLine } from 'src/utils'
-import { useCopy } from 'src/hooks/useCopy'
+import { toLine } from '@/utils'
+import { useCopy } from '@/hooks/useCopy'
 let props = defineProps<{
   // 弹出框的标题
   title: string,

@@ -3,26 +3,26 @@ let data1 = [
   {
     name: '导航1',
     index: '1',
-    icon: 'document'
+    icon: 'Document'
   },
   {
     name: '导航2',
     index: '2',
-    icon: 'document',
+    icon: 'Document',
     children: [{
       name: '导航2-1',
       index: '2-1',
-      icon: 'document',
+      icon: 'Document',
     }]
   },
   {
     name: '导航3',
     index: '3',
-    icon: 'document',
+    icon: 'Document',
     children: [{
       name: '导航3-1',
       index: '3-1',
-      icon: 'document'
+      icon: 'Document'
     }]
   }
 ]
@@ -30,33 +30,33 @@ let data2 = [
   {
     name: '导航1',
     index: '1',
-    icon: 'document'
+    icon: 'Document'
   },
   {
     name: '导航2',
     index: '2',
-    icon: 'document',
+    icon: 'Document',
     children: [{
       name: '导航2-1',
       index: '2-1',
-      icon: 'document',
+      icon: 'Document',
     }, {
       name: '导航2-2',
       index: '2-2',
-      icon: 'document',
+      icon: 'Document',
     }, {
       name: '导航2-3',
       index: '2-3',
-      icon: 'document',
+      icon: 'Document',
       children: [
         {
           name: '导航2-3-1',
           index: '2-3-1',
-          icon: 'document',
+          icon: 'Document',
         }, {
           name: '导航2-3-2',
           index: '2-3-2',
-          icon: 'document',
+          icon: 'Document',
         }
       ]
     }]
@@ -64,23 +64,23 @@ let data2 = [
   {
     name: '导航3',
     index: '3',
-    icon: 'document',
+    icon: 'Document',
     children: [{
       name: '导航3-1',
       index: '3-1',
-      icon: 'document'
+      icon: 'Document'
     }, {
       name: '导航3-2',
       index: '3-2',
-      icon: 'document',
+      icon: 'Document',
       children: [{
         name: '导航3-2-1',
         index: '3-2-1',
-        icon: 'document',
+        icon: 'Document',
       }, {
         name: '导航3-2-2',
         index: '3-2-2',
-        icon: 'document',
+        icon: 'Document',
       }]
     }]
   }

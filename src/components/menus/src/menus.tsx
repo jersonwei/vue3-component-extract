@@ -1,6 +1,8 @@
 import { defineComponent, PropType,useAttrs } from 'vue';
 import type { MenuItem } from './types';
 import {toLine} from '@/utils'
+import * as Icons from '@element-plus/icons-vue'
+import './styles/index.scss'
 export default defineComponent({
   props: {
     // 导航菜单数据
@@ -25,7 +27,8 @@ export default defineComponent({
     let renderMenu = (data:MenuItem[])=>{
       return data.map((item:MenuItem)=>{
         // 每个菜单的图标
-        item.i = `el-icon-${toLine(item.icon!)}`
+        // item.i = `el-icon-${toLine(item.icon!)}`
+        item.i = (Icons as any)[item.icon!]
         // 处理submenu的插槽
         let slots = {
           title:()=>{

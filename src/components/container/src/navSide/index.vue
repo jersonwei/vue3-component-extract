@@ -2,7 +2,7 @@
 const props = defineProps<{ collapse: boolean }>()
 let data = [
   {
-    icon: 'HomeFiled',
+    icon: 'PriceTag',
     name: '首页',
     index: '/'
   },
@@ -112,11 +112,9 @@ let data = [
       </el-menu-item>
     </router-link>
   </el-menu> -->
-  <menus :collapse="collapse" :data="data" router :defaultActive="$route.path"></menus>
+  <el-scrollbar max-height="800px">
+    <menus :collapse="collapse" :data="data" router :defaultActive="$route.path"></menus>
+  </el-scrollbar>
 </template>
 <style lang="scss" scoped>
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
-  min-height: 400px;
-}
 </style>

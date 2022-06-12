@@ -22,7 +22,7 @@ let props = defineProps({
 console.log(props.defaultActive)
 </script>
 <template>
-  <el-menu :default-active="defaultActive" :rooter="rooter" v-bind="$attrs">
+  <el-menu class=".el-menu-vertical-demo" :default-active="defaultActive" :rooter="rooter" v-bind="$attrs">
     <template v-for="(item, idx) in data">
       <el-menu-item v-if="!item.children || !item.children.length" :index="item.index" :key="idx">
         <component :is="`el-icon-${toLine(item.icon)}`"></component>
@@ -42,6 +42,11 @@ console.log(props.defaultActive)
   </el-menu>
 </template>
 <style lang="scss">
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
+}
+
 svg {
   margin-right: 5px;
 }
