@@ -3,6 +3,8 @@ import { ref } from 'vue';
 import type { CityItem } from './types'
 // 所有数据
 import citys from '../lib/city'
+// 分发事件
+let emits = defineEmits(['cityChange'])
 // 最终结果
 let result = ref<string>('请选择')
 // 弹出层显示状态
@@ -40,6 +42,7 @@ const showPoper = () => visible.value = !visible.value
 const clickItem = (item: CityItem) => {
   result.value = item.name
   visible.value = false
+  emits('cityChange', item)
 }
 </script>
 <template>
