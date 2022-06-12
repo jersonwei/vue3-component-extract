@@ -46,12 +46,12 @@ watch(() => endDate.value, val => {
 <template>
   <div style="display:flex">
     <div style="margin-right:20px">
-      <el-date-picker v-model="startDate" type="date" :placeholder="startPlaceholder"
-        :disabledDate="startDisabledDate" />
+      <el-date-picker v-model="startDate" type="date" :placeholder="startPlaceholder" :disabledDate="startDisabledDate"
+        v-bind="$attrs.startOptions" />
     </div>
     <div style="margin-right:20px">
       <el-date-picker v-model="endDate" type="date" :placeholder="endPlaceholder" :disabled='endDateDisabled'
-        :disabledDate="endDisabledDate" />
+        :disabledDate="endDisabledDate" v-bind="$attrs.endOptions" />
     </div>
   </div>
 </template>
