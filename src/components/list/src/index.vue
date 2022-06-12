@@ -13,10 +13,13 @@ let props = defineProps({
     default: () => []
   }
 })
+console.log(props.list)
 </script>
 <template>
-  <div>
-    list
+  <div class="list-tabs__item">
+    <el-tabs>
+      <el-tab-pane v-for="(item, index) in list" :key="index" :label="item.title"></el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 <style lang='scss' scoped>
