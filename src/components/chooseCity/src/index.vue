@@ -1,10 +1,17 @@
 <script setup lang='ts'>
 import { ref } from 'vue';
+import type { CityItem } from './types'
+// 所有数据
 import citys from '../lib/city'
+// 最终结果
 let result = ref<string>('请选择')
+// 弹出层显示状态
 let visible = ref<boolean>(false)
+// 单选框的值,按城市还是省份
 let radioVal = ref<string>('按城市')
+// 下拉框的值
 let selectValue = ref<string>('')
+// 下拉框数据
 const selectOptions = [
   {
     value: 'Option1',
@@ -27,7 +34,13 @@ const selectOptions = [
     label: 'Option5',
   },
 ]
+// 点击显示隐藏弹出框
 const showPoper = () => visible.value = !visible.value
+// 城市点击事件
+const clickItem = (item: CityItem) => {
+  result.value = item.name
+  visible.value = false
+}
 </script>
 <template>
   <el-popover v-model:visible="visible" placement="bottom-start" :width="430" trigger="click">
@@ -64,9 +77,9 @@ const showPoper = () => visible.value = !visible.value
               {{ key }}
             </el-col>
             <el-col :span="22" class="city-name">
-              <div class="city-name-item" v-for="item in value" :key="item.id">
+              <div class="city-name-item" v-for="items in value" :key="items.id" @click="clickItem(items)">
                 <div>
-                  {{ item.name }}
+                  {{ items.name }}
                 </div>
               </div>
             </el-col>
@@ -103,7 +116,7 @@ const showPoper = () => visible.value = !visible.value
   align-items: center;
   flex-wrap: wrap;
   margin-top: 10px;
-  margin-bottom:10px;
+  margin-bottom: 10px;
 
   &-item {
     padding: 3px 6px;
@@ -118,6 +131,7 @@ const showPoper = () => visible.value = !visible.value
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  cursor: pointer;
 
   .city-name-item {
     margin-right: 6px;
