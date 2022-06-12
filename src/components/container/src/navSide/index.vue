@@ -1,8 +1,68 @@
 <script setup lang='ts'>
 const props = defineProps<{ collapse: boolean }>()
+let data = [
+  {
+    icon: 'HomeFiled',
+    name: '首页',
+    index: '/'
+  },
+  {
+    icon: 'Check',
+    name: '图标选择器',
+    index: '/chooseIcon'
+  }, {
+    icon: 'DeleteLocation',
+    name: '省市区选择框',
+    index: '/chooseArea'
+  }, {
+    icon: 'Location',
+    name: '省市区街选择框',
+    index: '/chooseStreet'
+  }, {
+    icon: 'LocationInformation',
+    name: '省市区街级联选择器',
+    index: '/cascaderStreet'
+  }, {
+    icon: 'Sort',
+    name: '趋势标记',
+    index: '/trend'
+  }, {
+    icon: 'Bell',
+    name: '提示组件',
+    index: '/notification'
+  }, {
+    icon: 'Connection',
+    name: '菜单组件',
+    index: '/menus'
+  }, {
+    icon: 'Timer',
+    name: '时间选择',
+    index: '/chooseTime'
+  }, {
+    icon: 'TurnOff',
+    name: '城市选择',
+    index: '/chooseCity'
+  }, {
+    icon: 'DArrowRight',
+    name: '进度条',
+    index: '/progress'
+  }, {
+    icon: 'ScaleToOriginal',
+    name: '日历',
+    index: '/calender'
+  }, {
+    icon: 'Setting',
+    name: '表单组件',
+    index: '/form'
+  }, {
+    icon: 'ShoppingBag',
+    name: '表格组件',
+    index: '/table'
+  }
+]
 </script>
 <template>
-  <el-menu :collapse="collapse" default-active="2" class="el-menu-vertical-demo">
+  <!-- <el-menu :collapse="collapse" default-active="2" class="el-menu-vertical-demo">
     <router-link to="/home">
       <el-menu-item index="1">
         <el-icon-menu class="el-icon-menu"></el-icon-menu>
@@ -51,7 +111,8 @@ const props = defineProps<{ collapse: boolean }>()
         <span>菜单组件</span>
       </el-menu-item>
     </router-link>
-  </el-menu>
+  </el-menu> -->
+  <menus :collapse="collapse" :data="data" router :defaultActive="$route.path"></menus>
 </template>
 <style lang="scss" scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
