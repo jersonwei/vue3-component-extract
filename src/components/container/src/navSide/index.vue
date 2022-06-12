@@ -39,6 +39,12 @@ const props = defineProps<{ collapse: boolean }>()
         <span>趋势标记</span>
       </el-menu-item>
     </router-link>
+    <router-link to="/notification">
+      <el-menu-item index="7">
+        <el-icon-menu class="el-icon-menu"></el-icon-menu>
+        <span>提示组件</span>
+      </el-menu-item>
+    </router-link>
   </el-menu>
 </template>
 <style lang="scss" scoped>

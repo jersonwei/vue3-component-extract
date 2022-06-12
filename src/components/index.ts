@@ -4,13 +4,15 @@ import chooseIcon from './chooseIcon'
 import chooseStreet from './chooseStreet'
 import cascaderStreet from './cascaderStreet'
 import trend from './trend'
+import notification from './notification'
 // 让组件可以通过use的方法使用
 const components = [
   chooseArea,
   chooseIcon,
   chooseStreet,
   cascaderStreet,
-  trend
+  trend,
+  notification
 ]
 export default {
   install(app: App) {
