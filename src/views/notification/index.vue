@@ -5,7 +5,7 @@
   <div class="notBox">
     <notification :value="50">
       <template #default>
-        这是自定义的内容
+        <list></list>
       </template>
     </notification>
     <!-- <notification :value="60" :max="30"></notification>
