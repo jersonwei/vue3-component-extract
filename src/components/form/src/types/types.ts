@@ -1,4 +1,5 @@
 import type { RuleItem } from './rule'
+import type { CSSProperties } from 'vue'
 // 可配置的表单
 // 表单每一项的配置选项
 export interface FormOptions {
@@ -20,6 +21,8 @@ export interface FormOptions {
   // 特有属性
   // TODO类型补全
   attrs?: {
+    // css样式属性
+    style?: CSSProperties,
     clearable?: boolean,
     showPassword?: boolean,
     disabled?: boolean

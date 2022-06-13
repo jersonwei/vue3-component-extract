@@ -2,7 +2,7 @@
 import type { FormOptions } from '../../components/form/src/types/types'
 let options: FormOptions[] = [{
   type: 'input',
-  value: '',
+  value: 'admin',
   label: '用户名',
   prop: 'username',
   rules: [{
@@ -20,7 +20,7 @@ let options: FormOptions[] = [{
   }
 }, {
   type: 'input',
-  value: '',
+  value: '123456',
   label: '密码',
   prop: 'password',
   rules: [{
@@ -39,10 +39,15 @@ let options: FormOptions[] = [{
   }
 }, {
   type: 'select',
-  value: '',
+  value: '1',
   placeholder: '请选择职位',
   label: '职位',
   prop: 'role',
+  attrs: {
+    style: {
+      backgroundColor: 'red'
+    },
+  },
   rules: [
     {
       required: true,
@@ -63,6 +68,49 @@ let options: FormOptions[] = [{
       type: 'option',
       label: '员工',
       value: '3'
+    }
+  ]
+}, {
+  type: 'checkbox-group',
+  value: [],
+  label: '爱好',
+  children: [
+    {
+      type: 'checkbox',
+      label: '足球',
+      value: '1'
+    }, {
+      type: 'checkbox',
+      label: '蓝球',
+      value: '2'
+    }, {
+      type: 'checkbox',
+      label: '排球',
+      value: '3'
+    }
+  ]
+}, {
+  type: 'radio-group',
+  value: 'gender',
+  label: '性别',
+  rules: [{
+    required: true,
+    message: '性别不能为空',
+    trigger: 'blur'
+  }],
+  children: [
+    {
+      type: 'radio',
+      label: '男',
+      value: 'male'
+    }, {
+      type: 'radio',
+      label: '女',
+      value: 'female'
+    }, {
+      type: 'radio',
+      label: '男',
+      value: 'male'
     }
   ]
 }]

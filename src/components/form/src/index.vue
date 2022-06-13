@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { PropType, ref, onMounted } from 'vue'
+import { PropType, ref, onMounted, watch } from 'vue'
 import type { FormOptions } from './types/types'
 import cloneDeep from 'lodash/cloneDeep'
 let props = defineProps({
@@ -9,23 +9,31 @@ let props = defineProps({
     required: true
   }
 })
-let model = ref<any>({})
-let rules = ref<any>({})
-
+let model = ref<any>(null)
+let rules = ref<any>(null)
+// 初始化表单
+const initForm = () => {
+  if (props.options && props.options.length) {
+    let m: any = {}
+    let r: any = {}
+    props.options.map((item: FormOptions) => {
+      m[item.prop!] = item.value
+      r[item.prop!] = item.rules as any
+    })
+    model.value = cloneDeep(m)
+    rules.value = cloneDeep(r)
+  }
+}
 onMounted(() => {
-  let m: any = {}
-  let r: any = {}
-
-  props.options.map((item: FormOptions) => {
-    m[item.prop!] = item.value
-    r[item.prop!] = item.rules as any
-  })
-  model.value = cloneDeep(m)
-  rules.value = cloneDeep(r)
+  initForm()
 })
+// 监听父组件传递options
+watch(() => props.options, () => {
+  initForm()
+}, { deep: true })
 </script>
 <template>
-  <el-form :validate-on-rule-change="false" :model="model" :rules="rules" v-bind="$attrs">
+  <el-form v-if="model" :validate-on-rule-change="false" :model="model" :rules="rules" v-bind="$attrs">
     <template v-for="(item, index) in options" :key="index">
       <el-form-item v-if="!item.children || !item.children.length" :prop="item.prop" :label="item.label">
         <component v-model="model[item.prop!]" v-bind="item.attrs" :is="`el-${item.type}`"></component>
