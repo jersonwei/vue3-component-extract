@@ -1,12 +1,5 @@
 <script setup lang='ts'>
-export interface CityItem {
-  id: number
-  // 名字
-  name: string
-  // 拼音
-  spell: string
-}
-const cityChange = (val: CityItem) => {
+const cityChange = (val: string) => {
   console.log(val)
 }
 const provinceChange = (val: string) => {

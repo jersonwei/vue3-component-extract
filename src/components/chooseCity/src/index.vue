@@ -1,11 +1,12 @@
 <script setup lang='ts'>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 // 城市数据
 import type { CityItem } from './types'
 // 所有省份数据
 import provinces from '../lib/province.json'
 // 所有城市数据
 import citys from '../lib/city'
+import city from '../lib/city';
 // 数据拷贝
 let provincesData = ref(provinces)
 // 分发事件
@@ -19,33 +20,12 @@ let radioVal = ref<string>('按省份')
 // 下拉框的值
 let selectValue = ref<string>('')
 // 下拉框数据
-const selectOptions = [
-  {
-    value: 'Option1',
-    label: 'Option1',
-  },
-  {
-    value: 'Option2',
-    label: 'Option2',
-  },
-  {
-    value: 'Option3',
-    label: 'Option3',
-  },
-  {
-    value: 'Option4',
-    label: 'Option4',
-  },
-  {
-    value: 'Option5',
-    label: 'Option5',
-  },
-]
+const selectOptions = ref<CityItem[]>([])
 // 点击显示隐藏弹出框
 const showPoper = () => visible.value = !visible.value
 // 城市点击事件
-const clickCity = (item: CityItem) => {
-  result.value = item.name
+const clickCity = (item: string) => {
+  result.value = item
   visible.value = false
   emits('cityChange', item)
 }
@@ -59,6 +39,11 @@ const clickChat = (item: string) => {
   let el = document.getElementById(item)
   if (el) el.scrollIntoView()
 }
+onMounted(() => {
+  // 获取下拉框的城市数据
+  let values = Object.values(city.cities).flat(2)
+  selectOptions.value = values
+})
 </script>
 <template>
   <el-popover v-model:visible="visible" placement="bottom-start" :width="430" trigger="click">
@@ -79,8 +64,9 @@ const clickChat = (item: string) => {
           </el-radio-group>
         </el-col>
         <el-col :offset="1" :span="15">
-          <el-select size="small" v-model="selectValue" filterable placeholder="Select">
-            <el-option v-for="item in selectOptions" :key="item.value" :label="item.label" :value="item.value" />
+          <el-select size="small" v-model="selectValue" filterable placeholder="请搜索城市">
+            <el-option v-for="item in selectOptions!" :key="item.id" :label="item.name" :value="item.id"
+              @click="clickCity(item.name)" />
           </el-select>
         </el-col>
       </el-row>
@@ -101,7 +87,7 @@ const clickChat = (item: string) => {
                 {{ key }}
               </el-col>
               <el-col :span="22" class="city-name">
-                <div class="city-name-item" v-for="items in value" :key="items.id" @click="clickCity(items)">
+                <div class="city-name-item" v-for="items in value" :key="items.id" @click="clickCity(items.name)">
                   <div>
                     {{ items.name }}
                   </div>
