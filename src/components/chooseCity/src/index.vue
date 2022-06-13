@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import { ref } from 'vue';
 // 城市数据
-import type { CityItem, ProvinceItem } from './types'
+import type { CityItem } from './types'
 // 所有省份数据
 import provinces from '../lib/province.json'
 // 所有城市数据
@@ -9,7 +9,7 @@ import citys from '../lib/city'
 // 数据拷贝
 let provincesData = ref(provinces)
 // 分发事件
-let emits = defineEmits(['cityChange'])
+let emits = defineEmits(['cityChange', 'provinceChange'])
 // 最终结果
 let result = ref<string>('请选择')
 // 弹出层显示状态
@@ -44,10 +44,15 @@ const selectOptions = [
 // 点击显示隐藏弹出框
 const showPoper = () => visible.value = !visible.value
 // 城市点击事件
-const clickItem = (item: CityItem) => {
+const clickCity = (item: CityItem) => {
   result.value = item.name
   visible.value = false
   emits('cityChange', item)
+}
+const clickProvince = (item: string) => {
+  result.value = item
+  visible.value = false
+  emits('provinceChange', item)
 }
 // 点击字母
 const clickChat = (item: string) => {
@@ -96,7 +101,7 @@ const clickChat = (item: string) => {
                 {{ key }}
               </el-col>
               <el-col :span="22" class="city-name">
-                <div class="city-name-item" v-for="items in value" :key="items.id" @click="clickItem(items)">
+                <div class="city-name-item" v-for="items in value" :key="items.id" @click="clickCity(items)">
                   <div>
                     {{ items.name }}
                   </div>
@@ -125,7 +130,7 @@ const clickChat = (item: string) => {
                 </el-col>
                 <el-col :span="21" class="province-name">
                   <div class="province-name-item" v-for="(ThirdItems, tidx) in subitem.data" :key="tidx">
-                    <div>
+                    <div @click="clickProvince(ThirdItems)">
                       {{ ThirdItems }}
                     </div>
                   </div>
