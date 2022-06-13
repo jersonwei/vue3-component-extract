@@ -11,6 +11,7 @@ import progress from './progress'
 import chooseTime from './chooseTime'
 import chooseDate from './chooseDate'
 import chooseCity from './chooseCity'
+import form from './form'
 // 让组件可以通过use的方法使用
 const components = [
   chooseArea,
@@ -24,7 +25,8 @@ const components = [
   progress,
   chooseTime,
   chooseDate,
-  chooseCity
+  chooseCity,
+  form
 ]
 export default {
   install(app: App) {
