@@ -39,6 +39,26 @@ const clickChat = (item: string) => {
   let el = document.getElementById(item)
   if (el) el.scrollIntoView()
 }
+// 自定义搜索过滤
+const filterMethod = (val: string) => {
+  if (val === '') {
+    // 获取下拉框的城市数据
+    let values = Object.values(city.cities).flat(2)
+    selectOptions.value = values
+  } else {
+    if (radioVal.value === '按城市') {
+      // 中英文一起过滤
+      selectOptions.value = selectOptions.value.filter((item: CityItem) => {
+        return item.name.includes(val) || item.spell.includes(val)
+      })
+    } else {
+      // 只过滤中文
+      selectOptions.value = selectOptions.value.filter((item: CityItem) => {
+        return item.name.includes(val)
+      })
+    }
+  }
+}
 onMounted(() => {
   // 获取下拉框的城市数据
   let values = Object.values(city.cities).flat(2)
@@ -64,7 +84,7 @@ onMounted(() => {
           </el-radio-group>
         </el-col>
         <el-col :offset="1" :span="15">
-          <el-select size="small" v-model="selectValue" filterable placeholder="请搜索城市">
+          <el-select size="small" v-model="selectValue" filterable placeholder="请搜索城市" :filter-method="filterMethod">
             <el-option v-for="item in selectOptions!" :key="item.id" :label="item.name" :value="item.id"
               @click="clickCity(item.name)" />
           </el-select>
