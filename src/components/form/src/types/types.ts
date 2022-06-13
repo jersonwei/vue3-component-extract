@@ -15,6 +15,8 @@ export interface FormOptions {
   prop?: string
   // 表单验证规则
   rules?: RuleItem[],
+  // 占位符
+  placeholder?: string
   // 特有属性
   // TODO类型补全
   attrs?: {
@@ -22,6 +24,6 @@ export interface FormOptions {
     showPassword?: boolean,
     disabled?: boolean
   }
-  // 占位符
-  placeholder?: string
+  // 表单项的子元素
+  children?: FormOptions[]
 }

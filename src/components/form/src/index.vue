@@ -22,14 +22,21 @@ onMounted(() => {
   })
   model.value = cloneDeep(m)
   rules.value = cloneDeep(r)
-  console.log(rules.value, model.value)
 })
 </script>
 <template>
   <el-form :validate-on-rule-change="false" :model="model" :rules="rules" v-bind="$attrs">
-    <el-form-item :prop="item.prop" v-for="(item, index) in options" :label="item.label" :key="index">
-      <component v-model="model[item.prop!]" v-bind="item.attrs" :is="`el-${item.type}`"></component>
-    </el-form-item>
+    <template v-for="(item, index) in options" :key="index">
+      <el-form-item v-if="!item.children || !item.children.length" :prop="item.prop" :label="item.label">
+        <component v-model="model[item.prop!]" v-bind="item.attrs" :is="`el-${item.type}`"></component>
+      </el-form-item>
+      <el-form-item v-if="item.children && item.children.length">
+        <component v-model="model[item.prop!]" v-bind="item.attrs" :is="`el-${item.type}`">
+          <component v-for="(child, i) in item.children" :key="i" :label="child.label" :value="child.value"
+            :is="`el-${child.type}`"></component>
+        </component>
+      </el-form-item>
+    </template>
   </el-form>
 </template>
 <style lang='scss' scoped>

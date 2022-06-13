@@ -37,6 +37,34 @@ let options: FormOptions[] = [{
     showPassword: true,
     clearable: true
   }
+}, {
+  type: 'select',
+  value: '',
+  placeholder: '请选择职位',
+  label: '职位',
+  prop: 'role',
+  rules: [
+    {
+      required: true,
+      message: '职位不能为空',
+      trigger: 'blur'
+    }
+  ],
+  children: [
+    {
+      type: 'option',
+      label: '经理',
+      value: '1'
+    }, {
+      type: 'option',
+      label: '主管',
+      value: '2'
+    }, {
+      type: 'option',
+      label: '员工',
+      value: '3'
+    }
+  ]
 }]
 </script>
 <template>
