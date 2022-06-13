@@ -1,19 +1,24 @@
 <script setup lang='ts'>
 import { PropType, ref, onMounted, watch } from 'vue'
-import type { FormOptions } from './types/types'
+import type { FormOptions, FormInstance } from './types/types'
 import cloneDeep from 'lodash/cloneDeep'
 let props = defineProps({
   // 表单的配置项
   options: {
     type: Array as PropType<FormOptions[]>,
     required: true
+  },
+  httpRequest: {
+    type: Function,
+    default: () => { }
   }
 })
 // 派发事件
 let emits = defineEmits(['on-preview', 'on-remove', 'on-success', 'on-error'
-  , 'on-progress', 'on-change', 'on-exceed', 'before-upload', 'before-remove', 'http-request'])
+  , 'on-progress', 'on-change', 'on-exceed', 'before-upload', 'before-remove'])
 let model = ref<any>(null)
 let rules = ref<any>(null)
+let form = ref<FormInstance | null>(null)
 // 初始化表单
 const initForm = () => {
   if (props.options && props.options.length) {
@@ -62,13 +67,10 @@ const beforeRemove = (file: any, fileList: any) => {
 const beforeUpload = (file: any) => {
   emits("before-upload", file)
 }
-const httpRequest = () => {
-  emits("http-request")
-}
 
 </script>
 <template>
-  <el-form v-if="model" :validate-on-rule-change="false" :model="model" :rules="rules" v-bind="$attrs">
+  <el-form ref="form" v-if="model" :validate-on-rule-change="false" :model="model" :rules="rules" v-bind="$attrs">
     <template v-for="(item, index) in options" :key="index">
       <el-form-item v-if="!item.children || !item.children.length" :prop="item.prop" :label="item.label">
         <component v-if="item.type !== 'upload'" v-model="model[item.prop!]" v-bind="item.attrs"
@@ -76,7 +78,7 @@ const httpRequest = () => {
         <el-upload v-bind="item.uploadAttrs" v-else :on-preview="onPreview" :on-remove="onRemove"
           action="https://jsonplaceholder.typicode.com/posts/" :on-success="onSuccess" :on-error="onError"
           :on-progress="onProgress" :on-change="onChange" :before-remove="beforeRemove" :before-upload="beforeUpload"
-          :http-request="httpRequest" :on-exceed="onExceed">
+          :on-exceed="onExceed" :http-request="httpRequest">
           <slot name="uploadArea"></slot>
           <slot name="uploadTip"></slot>
         </el-upload>
@@ -88,6 +90,9 @@ const httpRequest = () => {
         </component>
       </el-form-item>
     </template>
+    <el-form-item>
+      <slot name="action" :form="form" :model="model"></slot>
+    </el-form-item>
   </el-form>
 </template>
 <style lang='scss' scoped>

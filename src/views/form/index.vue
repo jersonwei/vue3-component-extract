@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import type { FormOptions } from '../../components/form/src/types/types'
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { ElMessage, ElMessageBox, FormInstance } from 'element-plus'
 let options: FormOptions[] = [{
   type: 'input',
   value: 'admin',
@@ -123,23 +123,23 @@ let options: FormOptions[] = [{
   }
 }]
 // 上传组件的所有方法
-const onPreview = (file: any) => { console.log(file) }
-const onRemove = ({ file, fileList }: any) => { console.log(file, fileList) }
-const onSuccess = ({ response, file, fileList }: any) => { console.log(response, file, fileList) }
-const onError = ({ error, file, fileList }: any) => { console.log(error, file, fileList) }
-const onProgress = ({ event, file, fileList }: any) => { console.log(event, file, fileList) }
-const onChange = ({ file, fileList }: any) => {
-  console.log(file, fileList)
+const onPreview = (files: any) => { console.log(files) }
+const onRemove = ({ files, fileList }: any) => { console.log(files, fileList) }
+const onSuccess = ({ response, files, fileList }: any) => { console.log(response, files, fileList) }
+const onError = ({ error, files, fileList }: any) => { console.log(error, files, fileList) }
+const onProgress = ({ event, files, fileList }: any) => { console.log(event, files, fileList) }
+const onChange = ({ files, fileList }: any) => {
+  console.log(files, fileList)
 }
-const onExceed = ({ file, fileList }: any) => {
-  console.log(file, fileList)
+const onExceed = ({ files, fileList }: any) => {
+  console.log(files, fileList)
   ElMessage.warning(
-    `The limit is 3, you selected ${file.length} files this time, add up to ${file.length + fileList.length
+    `The limit is 3, you selected ${files.length} filess this time, add up to ${files.length + fileList.length
     } totally`
   )
 }
-const beforeRemove = ({ file, fileList }: any) => {
-  console.log(file, fileList)
+const beforeRemove = ({ files, fileList }: any) => {
+  console.log(files, fileList)
   return ElMessageBox.confirm(
     `Cancel the transfert of ${fileList.name} ?`
   ).then(
@@ -147,8 +147,27 @@ const beforeRemove = ({ file, fileList }: any) => {
     () => false
   )
 }
-const beforeUpload = (file: any) => { console.log(file) }
+const beforeUpload = (files: any) => { console.log(files) }
 const httpRequest = () => { }
+// 表单操作方法
+interface Scope {
+  form: FormInstance,
+  model: any
+}
+// 提交
+const submitForm = (scope: Scope) => {
+  scope.form.validate((valid) => {
+    if (valid) {
+
+    } else {
+      ElMessage.error('表单验证失败')
+    }
+  })
+}
+// 重置
+const resetForm = (scope: Scope) => {
+  scope.form.resetFields()
+}
 </script>
 <template>
   <div>
@@ -162,6 +181,10 @@ const httpRequest = () => { }
         <div style="color:#ccc;font-size:12px">
           jpg/png files with a size less than 500KB.
         </div>
+      </template>
+      <template #action="scope">
+        <el-button type="primary" @click="submitForm(scope)">Submit</el-button>
+        <el-button @click="resetForm(scope)">Reset</el-button>
       </template>
     </w-form>
   </div>
