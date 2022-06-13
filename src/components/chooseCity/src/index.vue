@@ -109,7 +109,8 @@ const clickChat = (item: string) => {
       <!-- 按省份显示的区域 -->
       <template v-else>
         <div class="province">
-          <div class="province-item" v-for="(item, index) in Object.keys(provincesData)" :key="index">
+          <div class="province-item" @click="clickChat(item)" v-for="(item, index) in Object.keys(provincesData)"
+            :key="index">
             {{ item }}
           </div>
         </div>
