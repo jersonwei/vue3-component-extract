@@ -91,7 +91,7 @@ let options: FormOptions[] = [{
   ]
 }, {
   type: 'radio-group',
-  value: 'gender',
+  value: [],
   label: '性别',
   rules: [{
     required: true,
@@ -113,11 +113,27 @@ let options: FormOptions[] = [{
       value: 'male'
     }
   ]
+}, {
+  type: 'upload',
+  label: '上传',
+  prop: 'pic',
+  uploadAttrs: {
+    action: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
+  }
 }]
 </script>
 <template>
   <div>
-    <w-form label-width="100px" :options="options"></w-form>
+    <w-form label-width="100px" :options="options">
+      <template #uploadArea>
+        <el-button type="primary" size="small">Click to upload</el-button>
+      </template>
+      <template #uploadTip>
+        <div style="color:#ccc;font-size:12px">
+          jpg/png files with a size less than 500KB.
+        </div>
+      </template>
+    </w-form>
   </div>
 </template>
 <style lang='scss' scoped>

@@ -9,7 +9,7 @@ export interface FormOptions {
   | 'rate' | 'select' | 'option' | 'slider' | 'switch' | 'time-picker' | 'time-select'
   | 'transfer' | 'upload'
   // 表单项的值
-  value: any
+  value?: any
   // 表单label
   label?: string
   // 表单标识
@@ -29,4 +29,23 @@ export interface FormOptions {
   }
   // 表单项的子元素
   children?: FormOptions[]
+  // 上传组件的属性和方法
+  uploadAttrs?: {
+    action: string
+    headers?: object
+    method?: 'post' | 'put' | 'patch'
+    mutiple?: boolean
+    data?: any
+    name?: string
+    withCredentials?: boolean
+    showFile?: boolean
+    drag?: boolean
+    accept?: string
+    thumbnailMode?: boolean
+    fileList?: any[]
+    listType?: 'text' | 'picture' | 'picture-card'
+    autoUpload?: boolean
+    disabled?: boolean
+    limit?: number
+  }
 }

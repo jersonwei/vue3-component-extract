@@ -36,7 +36,12 @@ watch(() => props.options, () => {
   <el-form v-if="model" :validate-on-rule-change="false" :model="model" :rules="rules" v-bind="$attrs">
     <template v-for="(item, index) in options" :key="index">
       <el-form-item v-if="!item.children || !item.children.length" :prop="item.prop" :label="item.label">
-        <component v-model="model[item.prop!]" v-bind="item.attrs" :is="`el-${item.type}`"></component>
+        <component v-if="item.type !== 'upload'" v-model="model[item.prop!]" v-bind="item.attrs"
+          :is="`el-${item.type}`"></component>
+        <el-upload v-bind="item.uploadAttrs" v-else>
+          <slot name="uploadArea"></slot>
+          <slot name="uploadTip"></slot>
+        </el-upload>
       </el-form-item>
       <el-form-item v-if="item.children && item.children.length">
         <component v-model="model[item.prop!]" v-bind="item.attrs" :is="`el-${item.type}`">
