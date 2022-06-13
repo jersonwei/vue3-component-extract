@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 import type { FormOptions } from '../../components/form/src/types/types'
+import { ElMessage, ElMessageBox } from 'element-plus'
 let options: FormOptions[] = [{
   type: 'input',
   value: 'admin',
@@ -121,10 +122,39 @@ let options: FormOptions[] = [{
     action: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
   }
 }]
+// 上传组件的所有方法
+const onPreview = (file: any) => { console.log(file) }
+const onRemove = ({ file, fileList }: any) => { console.log(file, fileList) }
+const onSuccess = ({ response, file, fileList }: any) => { console.log(response, file, fileList) }
+const onError = ({ error, file, fileList }: any) => { console.log(error, file, fileList) }
+const onProgress = ({ event, file, fileList }: any) => { console.log(event, file, fileList) }
+const onChange = ({ file, fileList }: any) => {
+  console.log(file, fileList)
+}
+const onExceed = ({ file, fileList }: any) => {
+  console.log(file, fileList)
+  ElMessage.warning(
+    `The limit is 3, you selected ${file.length} files this time, add up to ${file.length + fileList.length
+    } totally`
+  )
+}
+const beforeRemove = ({ file, fileList }: any) => {
+  console.log(file, fileList)
+  return ElMessageBox.confirm(
+    `Cancel the transfert of ${fileList.name} ?`
+  ).then(
+    () => true,
+    () => false
+  )
+}
+const beforeUpload = (file: any) => { console.log(file) }
+const httpRequest = () => { }
 </script>
 <template>
   <div>
-    <w-form label-width="100px" :options="options">
+    <w-form label-width="100px" :options="options" :on-preview="onPreview" :on-remove="onRemove" :on-success="onSuccess"
+      :on-error="onError" :on-progress="onProgress" :on-change="onChange" :before-remove="beforeRemove"
+      :before-upload="beforeUpload" :http-request="httpRequest" :on-exceed="onExceed">
       <template #uploadArea>
         <el-button type="primary" size="small">Click to upload</el-button>
       </template>
