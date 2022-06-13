@@ -41,24 +41,25 @@ const clickChat = (item: string) => {
 }
 // 自定义搜索过滤
 const filterMethod = (val: string) => {
+  let values = Object.values(city.cities).flat(2)
   if (val === '') {
     // 获取下拉框的城市数据
-    let values = Object.values(city.cities).flat(2)
     selectOptions.value = values
   } else {
     if (radioVal.value === '按城市') {
       // 中英文一起过滤
-      selectOptions.value = selectOptions.value.filter((item: CityItem) => {
+      selectOptions.value = values.filter((item: CityItem) => {
         return item.name.includes(val) || item.spell.includes(val)
       })
     } else {
       // 只过滤中文
-      selectOptions.value = selectOptions.value.filter((item: CityItem) => {
+      selectOptions.value = values.filter((item: CityItem) => {
         return item.name.includes(val)
       })
     }
   }
 }
+
 onMounted(() => {
   // 获取下拉框的城市数据
   let values = Object.values(city.cities).flat(2)
