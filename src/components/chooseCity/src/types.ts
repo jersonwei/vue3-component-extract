@@ -5,3 +5,9 @@ export interface CityItem {
   // 拼音
   spell: string
 }
+
+export interface ProvinceItem {
+  name: string
+  data: string[]
+  id?: string
+}

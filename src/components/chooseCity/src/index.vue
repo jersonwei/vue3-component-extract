@@ -1,8 +1,13 @@
 <script setup lang='ts'>
 import { ref } from 'vue';
-import type { CityItem } from './types'
-// 所有数据
+// 城市数据
+import type { CityItem, ProvinceItem } from './types'
+// 所有省份数据
+import provinces from '../lib/province.json'
+// 所有城市数据
 import citys from '../lib/city'
+// 数据拷贝
+let provincesData = ref(provinces)
 // 分发事件
 let emits = defineEmits(['cityChange'])
 // 最终结果
@@ -10,7 +15,7 @@ let result = ref<string>('请选择')
 // 弹出层显示状态
 let visible = ref<boolean>(false)
 // 单选框的值,按城市还是省份
-let radioVal = ref<string>('按城市')
+let radioVal = ref<string>('按省份')
 // 下拉框的值
 let selectValue = ref<string>('')
 // 下拉框数据
@@ -74,28 +79,61 @@ const clickChat = (item: string) => {
           </el-select>
         </el-col>
       </el-row>
-      <div class="city">
-        <!-- <div v-for="(value, key) in citys.cities"></div> -->
-        <!-- 字母区域 -->
-        <div class="city-item" @click="clickChat(item)" v-for="(item, index) in Object.keys(citys.cities)" :key="index">
-          {{ item }}</div>
-      </div>
-      <el-scrollbar max-height="300px">
-        <template v-for="(value, key) in citys.cities" ::key="key">
-          <el-row style="marginBottom:10px" :id="key">
-            <el-col :span='2'>
-              {{ key }}
-            </el-col>
-            <el-col :span="22" class="city-name">
-              <div class="city-name-item" v-for="items in value" :key="items.id" @click="clickItem(items)">
-                <div>
-                  {{ items.name }}
+      <!-- 将城市区域和滚动条区域包裹 根据单选框的值选择性显示-->
+      <template v-if="radioVal === '按城市'">
+        <div class="city">
+          <!-- <div v-for="(value, key) in citys.cities"></div> -->
+          <!-- 字母区域 -->
+          <div class="city-item" @click="clickChat(item)" v-for="(item, index) in Object.keys(citys.cities)"
+            :key="index">
+            {{ item }}</div>
+        </div>
+        <!-- 滚动区域 -->
+        <el-scrollbar max-height="300px">
+          <template v-for="(value, key) in citys.cities" ::key="key">
+            <el-row style="marginBottom:10px" :id="key">
+              <el-col :span='2'>
+                {{ key }}
+              </el-col>
+              <el-col :span="22" class="city-name">
+                <div class="city-name-item" v-for="items in value" :key="items.id" @click="clickItem(items)">
+                  <div>
+                    {{ items.name }}
+                  </div>
                 </div>
-              </div>
-            </el-col>
-          </el-row>
-        </template>
-      </el-scrollbar>
+              </el-col>
+            </el-row>
+          </template>
+        </el-scrollbar>
+      </template>
+      <!-- 按省份显示的区域 -->
+      <template v-else>
+        <div class="province">
+          <div class="province-item" v-for="(item, index) in Object.keys(provincesData)" :key="index">
+            {{ item }}
+          </div>
+        </div>
+        <!-- 滚动区域 -->
+        <el-scrollbar max-height="300px">
+          <!-- 二维数组需要二次循环 -->
+          <template v-for="(item, index) in Object.values(provinces)" :key="index">
+            <template v-for="(subitem, idx) in item" :key="subitem.name.id">
+              <el-row style="marginBottom:10px" :id="subitem.id">
+                <el-col :span='3'>
+                  {{ subitem.name }}
+                </el-col>
+                <el-col :span="21" class="province-name">
+                  <div class="province-name-item" v-for="(ThirdItems, tidx) in subitem.data" :key="tidx">
+                    <div>
+                      {{ ThirdItems }}
+                    </div>
+                  </div>
+                </el-col>
+              </el-row>
+            </template>
+          </template>
+        </el-scrollbar>
+      </template>
     </div>
   </el-popover>
 </template>
@@ -121,14 +159,16 @@ const clickChat = (item: string) => {
   padding: 8px;
 }
 
-.city {
+.city,
+.province {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   margin-top: 10px;
   margin-bottom: 10px;
 
-  &-item {
+  .city-item,
+  .province-item {
     padding: 3px 6px;
     margin-right: 8px;
     margin-bottom: 8px;
@@ -137,13 +177,15 @@ const clickChat = (item: string) => {
   }
 }
 
-.city-name {
+.city-name,
+.province-name {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   cursor: pointer;
 
-  .city-name-item {
+  .city-name-item,
+  .province-name-item {
     margin-right: 6px;
     margin-bottom: 6px;
   }
