@@ -6,7 +6,10 @@ import type { CityItem } from './types'
 import provinces from '../lib/province.json'
 // 所有城市数据
 import citys from '../lib/city'
+// 带拼音的数据
 import city from '../lib/city';
+// 备份数据准备
+let allCity = ref<CityItem[]>([])
 // 数据拷贝
 let provincesData = ref(provinces)
 // 分发事件
@@ -29,6 +32,7 @@ const clickCity = (item: string) => {
   visible.value = false
   emits('cityChange', item)
 }
+// 省份点击
 const clickProvince = (item: string) => {
   result.value = item
   visible.value = false
@@ -59,10 +63,20 @@ const filterMethod = (val: string) => {
     }
   }
 }
-
+// 下拉框选择
+const changSelect = (val: number) => {
+  let cityItem = allCity.value.find(item => item.id === val)!
+  result.value = cityItem.name
+  if (radioVal.value === '按城市') {
+    emits('cityChange', cityItem)
+  } else {
+    emits('provinceChange', cityItem.name)
+  }
+}
 onMounted(() => {
   // 获取下拉框的城市数据
   let values = Object.values(city.cities).flat(2)
+  allCity.value = values
   selectOptions.value = values
 })
 </script>
@@ -85,7 +99,8 @@ onMounted(() => {
           </el-radio-group>
         </el-col>
         <el-col :offset="1" :span="15">
-          <el-select size="small" v-model="selectValue" filterable placeholder="请搜索城市" :filter-method="filterMethod">
+          <el-select @change="changSelect" size="small" v-model="selectValue" filterable placeholder="请搜索城市"
+            :filter-method="filterMethod">
             <el-option v-for="item in selectOptions!" :key="item.id" :label="item.name" :value="item.id"
               @click="clickCity(item.name)" />
           </el-select>
