@@ -1,5 +1,5 @@
 import { defineComponent, PropType,useAttrs } from 'vue';
-// import type { MenuItem } from './types';
+import type { MenuItem } from './types';
 import {toLine} from '@/utils'
 import * as Icons from '@element-plus/icons-vue'
 import './styles/index.scss'

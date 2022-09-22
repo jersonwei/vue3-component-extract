@@ -47,7 +47,6 @@ export interface RuleItem {
   len?: number; // Length of type 'string' and 'array'
   enum?: Array<string | number | boolean | null | undefined>; // possible values of type 'enum'
   whitespace?: boolean;
-  trigger?: string | string[]
   trigger?: string | string[];
   fields?: Record<string, Rule>; // ignore when without required
   options?: ValidateOption;
@@ -114,9 +113,7 @@ export type ExecuteValidator = (
 ) => void;
 
 // >>>>> Message
-type ValidateMessage<T extends any[] = unknown[]> =
-  | string
-  | ((...args: T) => string);
+type ValidateMessage<T extends any[] = unknown[]> = string | ((...args: T) => string);
 type FullField = string | undefined;
 type EnumString = string | undefined;
 type Pattern = string | RegExp | undefined;
@@ -188,10 +185,7 @@ export interface ValidateError {
 
 export type ValidateFieldsError = Record<string, ValidateError[]>;
 
-export type ValidateCallback = (
-  errors: ValidateError[] | null,
-  fields: ValidateFieldsError | Values,
-) => void;
+export type ValidateCallback = (errors: ValidateError[] | null, fields: ValidateFieldsError | Values) => void;
 
 export interface RuleValuePackage {
   rule: InternalRuleItem;

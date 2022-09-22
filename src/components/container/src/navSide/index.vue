@@ -1,69 +1,87 @@
-<script setup lang='ts'>
-const props = defineProps<{ collapse: boolean }>()
+<script setup lang="ts">
+defineProps<{ collapse: boolean }>();
 let data = [
   {
     icon: 'PriceTag',
     name: '首页',
-    index: '/'
+    index: '/',
   },
   {
     icon: 'Check',
     name: '图标选择器',
-    index: '/chooseIcon'
-  }, {
+    index: '/chooseIcon',
+  },
+  {
     icon: 'DeleteLocation',
     name: '省市区选择框',
-    index: '/chooseArea'
-  }, {
+    index: '/chooseArea',
+  },
+  {
     icon: 'Location',
     name: '省市区街选择框',
-    index: '/chooseStreet'
-  }, {
+    index: '/chooseStreet',
+  },
+  {
     icon: 'LocationInformation',
     name: '省市区街级联选择器',
-    index: '/cascaderStreet'
-  }, {
+    index: '/cascaderStreet',
+  },
+  {
     icon: 'Sort',
     name: '趋势标记',
-    index: '/trend'
-  }, {
+    index: '/trend',
+  },
+  {
     icon: 'Bell',
     name: '提示组件',
-    index: '/notification'
-  }, {
+    index: '/notification',
+  },
+  {
     icon: 'Connection',
     name: '菜单组件',
-    index: '/menus'
-  }, {
+    index: '/menus',
+  },
+  {
     icon: 'Timer',
     name: '时间选择',
-    index: '/chooseTime'
-  }, {
+    index: '/chooseTime',
+  },
+  {
     icon: 'SunRise',
     name: '日期选择',
-    index: '/chooseDate'
-  }, {
+    index: '/chooseDate',
+  },
+  {
     icon: 'TurnOff',
     name: '城市选择',
-    index: '/chooseCity'
-  }, {
+    index: '/chooseCity',
+  },
+  {
     icon: 'DArrowRight',
     name: '进度条',
-    index: '/progress'
-  }, {
+    index: '/progress',
+  },
+  {
     icon: 'ScaleToOriginal',
     name: '日历组件',
-    index: '/calender'
-  }, {
+    index: '/calendar',
+  },
+  {
     icon: 'Setting',
     name: '表单组件',
-    index: '/form'
-  }, {
+    index: '/form',
+  },
+  {
     icon: 'ShoppingBag',
+    name: '弹出框表单',
+    index: '/modelForm',
+  },
+  {
+    icon: 'Pointer',
     name: '表格组件',
-    index: '/table'
-  }
-]
+    index: '/table',
+  },
+];
 </script>
 <template>
   <!-- <el-menu :collapse="collapse" default-active="2" class="el-menu-vertical-demo">
@@ -120,5 +138,4 @@ let data = [
     <w-menus :collapse="collapse" :data="data" router :defaultActive="$route.path"></w-menus>
   </el-scrollbar>
 </template>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

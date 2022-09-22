@@ -13,7 +13,9 @@
     "preview": "vite preview",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:css": "stylelint **/*.{vue,htm,html,css,sss,less,scss,sass} --fix",
-    "cm": "git-cz"
+    "cm": "git-cz",
+    "build:components": "node ./command/build.js",
+    "lib": "npm run build:components"
   },
   "husky": {
     "hooks": {
@@ -45,23 +47,35 @@
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
     "@element-plus/icons-vue": "^2.0.4",
+    "@fullcalendar/core": "^5.11.3",
+    "@fullcalendar/daygrid": "^5.11.3",
+    "@fullcalendar/interaction": "^5.11.3",
+    "@fullcalendar/timegrid": "^5.11.3",
+    "@fullcalendar/vue": "^5.11.2",
+    "@fullcalendar/vue3": "^5.11.2",
+    "@types/axios": "^0.14.0",
     "@types/lodash": "^4.14.182",
+    "@types/mockjs": "^1.0.6",
+    "axios": "^0.27.2",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "element-plus": "^2.2.5",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "fs-extra": "^10.1.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.1",
     "lodash": "^4.17.21",
+    "mockjs": "^1.1.0",
     "prettier": "^2.6.2",
     "stylelint": "^14.9.0",
     "stylelint-config-standard": "^26.0.0",
     "stylelint-order": "^5.0.0",
     "stylelint-scss": "^4.2.0",
     "vue": "^3.2.25",
-    "vue-router": "^4.0.15"
+    "vue-router": "^4.0.15",
+    "wangeditor": "^4.7.15"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.27.1",
